@@ -42,6 +42,7 @@ dependencies {
     testRuntime("org.junit.vintage:junit-vintage-engine:$junitVersion")
     testCompile("org.assertj:assertj-core:3.9.1")
     testCompile("org.mockito:mockito-core:2.21.0")
+    compile("org.projectlombok:lombok:1.18.2")
 }
 
 tasks {
