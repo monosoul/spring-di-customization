@@ -46,6 +46,6 @@ public class FortuneTellControllerTestFT {
         assertThat(actual.getBody()).isNotNull();
         assertThat(actual.getBody().getMessage()).isNotBlank();
 
-        LOGGER.info("Recieved response: {}", actual.getBody());
+        LOGGER.info("Received response: {}", actual.getBody());
     }
 }
