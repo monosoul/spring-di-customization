@@ -2,7 +2,8 @@ group = "com.github.monosoul"
 version = "1.0"
 
 val springBootVersion: String by extra
-val byteBuddyVersion = "1.8.22"
+val byteBuddyVersion by extra { "1.8.22" }
+val junitVersion by extra { "5.3.1" }
 
 buildscript {
     val springBootVersion by extra { "2.0.5.RELEASE" }
@@ -30,7 +31,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-val junitVersion by extra { "5.3.1" }
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-aop")
     compile("org.springframework.boot:spring-boot-starter-web")
