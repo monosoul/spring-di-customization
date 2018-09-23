@@ -7,6 +7,6 @@ import lombok.Value;
 @Builder
 public class PersonalData {
     String name;
-    Short age;
+    Integer age;
     String email;
 }

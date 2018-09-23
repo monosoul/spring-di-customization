@@ -6,6 +6,6 @@ import lombok.Value;
 
 @Value
 @Builder
-public final class FortuneResponse {
+public class FortuneResponse {
     String message;
 }

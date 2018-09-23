@@ -8,12 +8,13 @@ import lombok.Value;
 @Value
 @Builder
 @JsonDeserialize(builder = FortuneRequest.FortuneRequestBuilder.class)
-public final class FortuneRequest {
+public class FortuneRequest {
     String name;
     String zodiacSign;
-    Short age;
+    Integer age;
     String email;
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static final class FortuneRequestBuilder { }
+    public static final class FortuneRequestBuilder {
+    }
 }
