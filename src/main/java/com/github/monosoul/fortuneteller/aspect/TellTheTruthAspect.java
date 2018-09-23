@@ -2,6 +2,7 @@ package com.github.monosoul.fortuneteller.aspect;
 
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
 import lombok.extern.slf4j.Slf4j;
+import lombok.val;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -19,10 +20,8 @@ public class TellTheTruthAspect {
             "com.github.monosoul.fortuneteller.web..*(*))")
     public FortuneResponse tellTheTruth(final ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("Forcing the truth...");
-        joinPoint.proceed();
+        val response = (FortuneResponse) joinPoint.proceed();
 
-        return FortuneResponse.builder()
-                .message(THE_TRUTH)
-                .build();
+        return response.toBuilder().message(THE_TRUTH).build();
     }
 }
