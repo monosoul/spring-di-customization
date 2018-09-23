@@ -18,7 +18,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
         consumes = APPLICATION_JSON_UTF8_VALUE,
         produces = APPLICATION_JSON_UTF8_VALUE
 )
-public final class FortuneTellController {
+public class FortuneTellController {
 
     private static final Logger LOGGER = getLogger(FortuneTellController.class);
 
