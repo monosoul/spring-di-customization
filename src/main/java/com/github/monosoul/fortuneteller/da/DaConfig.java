@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+import static com.github.monosoul.fortuneteller.common.Fortunes.FORTUNES;
 import static java.util.Arrays.asList;
 
 @Configuration
@@ -12,13 +13,6 @@ public class DaConfig {
 
     @Bean
     public List<String> fortunes() {
-        return asList(
-                "You'll get married!",
-                "Wow! You'll be very rich!",
-                "You'll have 10 children!",
-                "You'll meet your love soon!",
-                "You'll get a promotion at your work in a year!",
-                "You'll become very popular soon!"
-        );
+        return asList(FORTUNES);
     }
 }

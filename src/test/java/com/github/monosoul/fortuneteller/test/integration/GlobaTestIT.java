@@ -12,6 +12,7 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.util.stream.Stream;
 
+import static com.github.monosoul.fortuneteller.common.Fortunes.FORTUNES;
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomUtils.nextInt;
@@ -25,15 +26,6 @@ public class GlobaTestIT {
 
     private static final int LIMIT = 10;
 
-    private static final String[] EXPECTED_RESPONSES = new String[]{
-            "You'll get married!",
-            "Wow! You'll be very rich!",
-            "You'll have 10 children!",
-            "You'll meet your love soon!",
-            "You'll get a promotion at your work in a year!",
-            "You'll become very popular soon!"
-    };
-
     @Autowired
     private Globa globa;
 
@@ -44,7 +36,7 @@ public class GlobaTestIT {
 
         assertThat(actual).isNotNull();
         assertThat(actual.getMessage()).isNotBlank()
-                .isIn((Object[]) EXPECTED_RESPONSES);
+                .isIn((Object[]) FORTUNES);
     }
 
     @ParameterizedTest
