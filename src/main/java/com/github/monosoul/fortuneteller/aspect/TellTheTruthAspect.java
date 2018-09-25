@@ -1,6 +1,7 @@
 package com.github.monosoul.fortuneteller.aspect;
 
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
+import com.github.monosoul.fortuneteller.model.Horoscope;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -18,9 +19,19 @@ public class TellTheTruthAspect {
     @Around("@annotation(com.github.monosoul.fortuneteller.aspect.TellTheTruth)&&" +
             "execution(public com.github.monosoul.fortuneteller.model.FortuneResponse " +
             "com.github.monosoul.fortuneteller.web..*(*))")
-    public FortuneResponse tellTheTruth(final ProceedingJoinPoint joinPoint) throws Throwable {
+    public FortuneResponse tellTheTruthFortune(final ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("Forcing the truth...");
         val response = (FortuneResponse) joinPoint.proceed();
+
+        return response.toBuilder().message(THE_TRUTH).build();
+    }
+
+    @Around("@annotation(com.github.monosoul.fortuneteller.aspect.TellTheTruth)&&" +
+            "execution(public com.github.monosoul.fortuneteller.model.Horoscope " +
+            "com.github.monosoul.fortuneteller.web..*(*))")
+    public Horoscope tellTheTruthHoroscope(final ProceedingJoinPoint joinPoint) throws Throwable {
+        log.info("Forcing the truth...");
+        val response = (Horoscope) joinPoint.proceed();
 
         return response.toBuilder().message(THE_TRUTH).build();
     }
