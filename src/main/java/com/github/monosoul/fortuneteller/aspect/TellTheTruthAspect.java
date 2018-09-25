@@ -44,8 +44,8 @@ public class TellTheTruthAspect {
         joinPoint.proceed();
 
         return PersonalizedHoroscope.builder()
-                                    .name("Anonymous")
-                                    .horoscope(Horoscope.builder().message(THE_TRUTH).build())
-                                    .build();
+                .name("Anonymous")
+                .horoscope(Horoscope.builder().message(THE_TRUTH).build())
+                .build();
     }
 }
