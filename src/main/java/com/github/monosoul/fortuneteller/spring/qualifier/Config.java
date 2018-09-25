@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 import static java.util.Set.of;
 
-@Configuration
+//@Configuration
 public class Config {
 
     @Bean
