@@ -1,12 +1,10 @@
 package com.github.monosoul.fortuneteller.spring;
 
 import lombok.NonNull;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.config.DependencyDescriptor;
 import org.springframework.beans.factory.support.AutowireCandidateResolver;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.util.Assert;
 
 public class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
 
@@ -14,12 +12,10 @@ public class DecoratorAutowireCandidateResolver implements AutowireCandidateReso
 
     public DecoratorAutowireCandidateResolver(
             @NonNull final AutowireCandidateResolver resolver,
-            @NonNull final BeanFactory beanFactory
+            @NonNull final DefaultListableBeanFactory beanFactory
     ) {
-        Assert.state(beanFactory instanceof DefaultListableBeanFactory,
-                "BeanFactory needs to be a DefaultListableBeanFactory");
         this.resolver = resolver;
-        buildDependencies((DefaultListableBeanFactory) beanFactory);
+        buildDependencies(beanFactory);
     }
 
     @Override
