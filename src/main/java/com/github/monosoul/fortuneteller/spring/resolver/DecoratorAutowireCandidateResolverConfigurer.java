@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.spring;
+package com.github.monosoul.fortuneteller.spring.resolver;
 
 import lombok.val;
 import org.springframework.beans.BeansException;

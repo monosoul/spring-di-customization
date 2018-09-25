@@ -1,5 +1,6 @@
-package com.github.monosoul.fortuneteller.spring;
+package com.github.monosoul.fortuneteller.spring.resolver;
 
+import com.github.monosoul.fortuneteller.spring.DecoratorType;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
