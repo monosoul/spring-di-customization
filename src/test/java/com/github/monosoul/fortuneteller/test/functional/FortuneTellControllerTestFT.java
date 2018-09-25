@@ -3,6 +3,7 @@ package com.github.monosoul.fortuneteller.test.functional;
 import com.github.monosoul.fortuneteller.test.functional.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.test.functional.model.FortuneResponse;
 import lombok.val;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
@@ -50,7 +51,8 @@ public class FortuneTellControllerTestFT {
         LOGGER.info("Received response: {}", actual.getBody());
     }
 
-    //@Test
+    @Test
+    @Disabled
     void testWithAspect() {
         val actual = client.postForEntity(
                 "http://localhost:" + port + "/fortune/tell",

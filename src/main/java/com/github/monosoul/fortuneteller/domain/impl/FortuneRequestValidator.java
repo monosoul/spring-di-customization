@@ -1,13 +1,12 @@
-package com.github.monosoul.fortuneteller.domain;
+package com.github.monosoul.fortuneteller.domain.impl;
 
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
+import java.util.function.Predicate;
 import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
-import java.util.function.Predicate;
-
 @Component
-public class FortuneRequestValidator implements Predicate<FortuneRequest> {
+public final class FortuneRequestValidator implements Predicate<FortuneRequest> {
 
     private final Predicate<String> emailValidator;
 

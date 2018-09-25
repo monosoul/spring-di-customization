@@ -1,5 +1,6 @@
 package com.github.monosoul.fortuneteller.web;
 
+import com.github.monosoul.fortuneteller.aspect.TellTheTruth;
 import com.github.monosoul.fortuneteller.domain.FortuneTeller;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
@@ -28,6 +29,7 @@ public class FortuneTellController {
         this.fortuneTeller = fortuneTeller;
     }
 
+    //@TellTheTruth
     @PostMapping(value = "/tell")
     public FortuneResponse tell(@RequestBody final FortuneRequest request) {
         LOGGER.info("Received request: {}", request);

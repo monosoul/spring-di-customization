@@ -1,16 +1,14 @@
-package com.github.monosoul.fortuneteller.da;
-
-import lombok.val;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.List;
-import java.util.stream.Stream;
+package com.github.monosoul.fortuneteller.da.impl;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
+import java.util.stream.Stream;
+import lombok.val;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class RandomFortuneResponseRepositoryTest {
 

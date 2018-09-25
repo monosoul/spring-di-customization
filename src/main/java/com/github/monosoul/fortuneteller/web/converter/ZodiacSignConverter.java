@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.function.Function;
 
 @Component
-public class ZodiacSignConverter implements Function<String, ZodiacSign> {
+public final class ZodiacSignConverter implements Function<String, ZodiacSign> {
 
     @Override
     public ZodiacSign apply(@NonNull final String input) {

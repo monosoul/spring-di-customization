@@ -1,11 +1,10 @@
-package com.github.monosoul.fortuneteller.domain;
-
-import org.springframework.stereotype.Component;
+package com.github.monosoul.fortuneteller.domain.impl;
 
 import java.util.function.Predicate;
+import org.springframework.stereotype.Component;
 
 @Component
-public class EmailValidator implements Predicate<String> {
+public final class EmailValidator implements Predicate<String> {
 
     static final int MAX_LENGTH = 100;
 

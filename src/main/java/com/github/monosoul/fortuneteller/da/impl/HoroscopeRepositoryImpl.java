@@ -1,6 +1,7 @@
-package com.github.monosoul.fortuneteller.da;
+package com.github.monosoul.fortuneteller.da.impl;
 
 import com.github.monosoul.fortuneteller.common.ZodiacSign;
+import com.github.monosoul.fortuneteller.da.HoroscopeRepository;
 import com.github.monosoul.fortuneteller.model.Horoscope;
 import lombok.NonNull;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 
 @Repository
-public class HoroscopeRepositoryImpl implements HoroscopeRepository {
+public final class HoroscopeRepositoryImpl implements HoroscopeRepository {
 
     static final String DOGE_RESPONSE = "Wow! Such luck! Much money!";
 
