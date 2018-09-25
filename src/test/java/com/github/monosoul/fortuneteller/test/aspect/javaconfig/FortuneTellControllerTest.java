@@ -10,6 +10,7 @@ import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.web.FortuneTellController;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
+@Disabled
 @SpringJUnitConfig
 @ActiveProfiles("unit-javaconfig")
 public class FortuneTellControllerTest {
@@ -34,7 +36,7 @@ public class FortuneTellControllerTest {
         initMocks(this);
     }
 
-    //@Test
+    @Test
     void tellTheTruth() {
         val actual = controller.tell(request);
 

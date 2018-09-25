@@ -6,8 +6,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.github.monosoul.fortuneteller.automock.Automocked;
 import com.github.monosoul.fortuneteller.web.HoroscopeTellController;
 import lombok.val;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+@Disabled
 public class HoroscopeTellControllerTest extends TestBase {
 
     private static final int LIMIT = 10;

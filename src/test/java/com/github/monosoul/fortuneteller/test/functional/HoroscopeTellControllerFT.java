@@ -7,6 +7,7 @@ import static org.springframework.http.HttpStatus.OK;
 import com.github.monosoul.fortuneteller.test.functional.model.Horoscope;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,8 @@ public class HoroscopeTellControllerFT {
         log.info("Received response: {}", actual.getBody());
     }
 
-    //@Test
+    @Test
+    @Disabled
     void testWithAspect() {
         val actual = client.getForEntity("http://localhost:" + port + "/horoscope/tell/aquarius", Horoscope.class);
 
