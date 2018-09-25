@@ -14,12 +14,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.github.monosoul.fortuneteller.spring.Decorator.NOT_DECORATOR;
+import static com.github.monosoul.fortuneteller.spring.DecoratorType.NOT_DECORATOR;
 
 @Slf4j
 class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
 
-    private final Map<Decorator, Set<String>> dependencies = new HashMap<>();
+    private final Map<DecoratorType, Set<String>> dependencies = new HashMap<>();
     private final Set<String> decoratorsWithFoundDependencies = new HashSet<>();
     private final AutowireCandidateResolver resolver;
 
@@ -85,7 +85,7 @@ class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
 
             val beanClassSimpleName = getSimpleName(beanDefinition.getBeanClassName());
             log.debug("{} simple class name is: {}", beanName, beanClassSimpleName);
-            for (val decoratorType : Decorator.values()) {
+            for (val decoratorType : DecoratorType.values()) {
                 log.debug("Comparing {} with {} decorator type", beanClassSimpleName, decoratorType);
                 if (beanClassSimpleName.startsWith(decoratorType.getPrefix())) {
                     log.debug("Adding {} to dependencies with type {}", beanName, decoratorType);
@@ -110,8 +110,8 @@ class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
         return descriptor.getDependencyType().isAssignableFrom(dependent);
     }
 
-    private Decorator getDecoratorTypeFor(final Class<?> clazz) {
-        for (val decoratorType : Decorator.values()) {
+    private DecoratorType getDecoratorTypeFor(final Class<?> clazz) {
+        for (val decoratorType : DecoratorType.values()) {
             if (clazz.getSimpleName().startsWith(decoratorType.getPrefix())) {
                 return decoratorType;
             }
@@ -127,7 +127,7 @@ class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
         log.debug("Candidate bean name is {}", candidateBeanName);
 
         val dependentDecoratorType = getDecoratorTypeFor(dependentClass);
-        val decoratorTypes = Decorator.values();
+        val decoratorTypes = DecoratorType.values();
         val lastDecoratorTypeIndex = decoratorTypes.length - 1;
         if (dependentDecoratorType.ordinal() == lastDecoratorTypeIndex) {
             log.debug("{} of decorator type {} has same type dependency. Probably not decorator. Falling back to " +
