@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Map;
 
 @Repository
-public class HoroscopeRepositoryImpl implements HoroscopeRepository {
+public final class HoroscopeRepositoryImpl implements HoroscopeRepository {
 
     static final String DOGE_RESPONSE = "Wow! Such luck! Much money!";
 

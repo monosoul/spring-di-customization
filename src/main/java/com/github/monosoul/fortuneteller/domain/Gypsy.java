@@ -7,7 +7,7 @@ import lombok.NonNull;
 import org.springframework.stereotype.Service;
 
 @Service
-public class Gypsy implements HoroscopeTeller {
+public final class Gypsy implements HoroscopeTeller {
 
     private final HoroscopeRepository repository;
 
