@@ -1,13 +1,13 @@
-package com.github.monosoul.fortuneteller.domain;
+package com.github.monosoul.fortuneteller.domain.impl;
 
 import com.github.monosoul.fortuneteller.da.FortuneResponseRepository;
 import com.github.monosoul.fortuneteller.da.PersonalDataRepository;
+import com.github.monosoul.fortuneteller.domain.FortuneTeller;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
 import com.github.monosoul.fortuneteller.model.PersonalData;
-import org.springframework.stereotype.Service;
-
 import java.util.function.Function;
+import org.springframework.stereotype.Service;
 
 @Service
 public final class Globa implements FortuneTeller {

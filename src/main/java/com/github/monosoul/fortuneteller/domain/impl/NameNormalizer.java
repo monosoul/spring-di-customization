@@ -1,10 +1,10 @@
-package com.github.monosoul.fortuneteller.domain;
+package com.github.monosoul.fortuneteller.domain.impl;
 
 import java.util.function.Function;
 import org.springframework.stereotype.Component;
 
 @Component
-public class NameNormalizer implements Function<String, String> {
+public final class NameNormalizer implements Function<String, String> {
 
     @Override
     public String apply(final String input) {

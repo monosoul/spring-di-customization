@@ -1,6 +1,20 @@
-package com.github.monosoul.fortuneteller.da;
+package com.github.monosoul.fortuneteller.da.impl;
 
+import static com.github.monosoul.fortuneteller.da.impl.HoroscopeRepositoryImpl.DOGE_RESPONSE;
+import static com.github.monosoul.fortuneteller.util.Util.randomEnum;
+import static java.util.stream.Stream.generate;
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 import com.github.monosoul.fortuneteller.common.ZodiacSign;
+import java.util.Map;
+import java.util.stream.Stream;
 import lombok.val;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,20 +23,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
-
-import java.util.Map;
-import java.util.stream.Stream;
-
-import static com.github.monosoul.fortuneteller.da.HoroscopeRepositoryImpl.DOGE_RESPONSE;
-import static com.github.monosoul.fortuneteller.util.Util.randomEnum;
-import static java.util.stream.Stream.generate;
-import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.*;
-import static org.mockito.MockitoAnnotations.initMocks;
 
 class HoroscopeRepositoryImplTest {
 

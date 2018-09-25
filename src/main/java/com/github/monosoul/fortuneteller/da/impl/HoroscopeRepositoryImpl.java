@@ -1,6 +1,7 @@
-package com.github.monosoul.fortuneteller.da;
+package com.github.monosoul.fortuneteller.da.impl;
 
 import com.github.monosoul.fortuneteller.common.ZodiacSign;
+import com.github.monosoul.fortuneteller.da.HoroscopeRepository;
 import com.github.monosoul.fortuneteller.model.Horoscope;
 import lombok.NonNull;
 import org.springframework.stereotype.Repository;

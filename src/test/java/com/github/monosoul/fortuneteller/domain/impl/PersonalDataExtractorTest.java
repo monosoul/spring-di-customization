@@ -1,15 +1,4 @@
-package com.github.monosoul.fortuneteller.domain;
-
-import com.github.monosoul.fortuneteller.model.FortuneRequest;
-import lombok.val;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.mockito.Mock;
-
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+package com.github.monosoul.fortuneteller.domain.impl;
 
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -20,6 +9,15 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
+import com.github.monosoul.fortuneteller.model.FortuneRequest;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+import lombok.val;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.mockito.Mock;
 
 class PersonalDataExtractorTest {
 
@@ -41,7 +39,7 @@ class PersonalDataExtractorTest {
         val actual = new PersonalDataExtractor(requestValidator).apply(request);
 
         assertThat(actual).isNotNull()
-                .isEqualToIgnoringGivenFields(request, "zodiacSign");
+                          .isEqualToIgnoringGivenFields(request, "zodiacSign");
     }
 
     @Test
@@ -53,17 +51,16 @@ class PersonalDataExtractorTest {
         assertThatThrownBy(() -> new PersonalDataExtractor(requestValidator).apply(request))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Invalid request!");
-
     }
 
     private static Stream<FortuneRequest> requestStream() {
         return generate(() ->
                 FortuneRequest.builder()
-                        .name(randomAlphabetic(LIMIT))
-                        .zodiacSign(randomAlphabetic(LIMIT))
-                        .age(nextInt())
-                        .email(randomAlphabetic(LIMIT))
-                        .build()
+                              .name(randomAlphabetic(LIMIT))
+                              .zodiacSign(randomAlphabetic(LIMIT))
+                              .age(nextInt())
+                              .email(randomAlphabetic(LIMIT))
+                              .build()
         ).limit(LIMIT);
     }
 }

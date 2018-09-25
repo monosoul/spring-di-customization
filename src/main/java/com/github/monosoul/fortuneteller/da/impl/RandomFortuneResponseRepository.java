@@ -1,5 +1,6 @@
-package com.github.monosoul.fortuneteller.da;
+package com.github.monosoul.fortuneteller.da.impl;
 
+import com.github.monosoul.fortuneteller.da.FortuneResponseRepository;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
 import org.springframework.stereotype.Repository;
 

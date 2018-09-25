@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain;
+package com.github.monosoul.fortuneteller.domain.impl;
 
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.PersonalData;

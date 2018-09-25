@@ -7,7 +7,7 @@ import static org.apache.commons.lang3.RandomUtils.nextInt;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
-import com.github.monosoul.fortuneteller.domain.Globa;
+import com.github.monosoul.fortuneteller.domain.impl.Globa;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import java.util.stream.Stream;
 import lombok.val;

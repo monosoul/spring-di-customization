@@ -1,5 +1,6 @@
-package com.github.monosoul.fortuneteller.da;
+package com.github.monosoul.fortuneteller.da.impl;
 
+import com.github.monosoul.fortuneteller.da.PersonalDataRepository;
 import com.github.monosoul.fortuneteller.model.PersonalData;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;

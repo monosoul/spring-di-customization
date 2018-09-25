@@ -1,17 +1,15 @@
-package com.github.monosoul.fortuneteller.domain;
+package com.github.monosoul.fortuneteller.domain.impl;
 
-import lombok.val;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
-import java.util.stream.Stream;
-
-import static com.github.monosoul.fortuneteller.domain.EmailValidator.MAX_LENGTH;
+import static com.github.monosoul.fortuneteller.domain.impl.EmailValidator.MAX_LENGTH;
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import java.util.stream.Stream;
+import lombok.val;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 class EmailValidatorTest {
 
