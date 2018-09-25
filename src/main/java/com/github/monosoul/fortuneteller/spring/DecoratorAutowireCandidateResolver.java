@@ -11,10 +11,9 @@ public class DecoratorAutowireCandidateResolver implements AutowireCandidateReso
     private final AutowireCandidateResolver resolver;
 
     public DecoratorAutowireCandidateResolver(
-            @NonNull final AutowireCandidateResolver resolver,
             @NonNull final DefaultListableBeanFactory beanFactory
     ) {
-        this.resolver = resolver;
+        this.resolver = beanFactory.getAutowireCandidateResolver();
         buildDependencies(beanFactory);
     }
 
