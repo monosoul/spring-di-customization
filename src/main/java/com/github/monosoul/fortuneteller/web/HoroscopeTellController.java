@@ -1,5 +1,6 @@
 package com.github.monosoul.fortuneteller.web;
 
+import com.github.monosoul.fortuneteller.aspect.TellTheTruth;
 import com.github.monosoul.fortuneteller.common.ZodiacSign;
 import com.github.monosoul.fortuneteller.domain.HoroscopeTeller;
 import com.github.monosoul.fortuneteller.model.Horoscope;
@@ -33,6 +34,7 @@ public class HoroscopeTellController {
         this.zodiacSignConverter = zodiacSignConverter;
     }
 
+    //@TellTheTruth
     @GetMapping(value = "/tell/{sign}")
     public Horoscope tell(@PathVariable final String sign) {
         log.info("Received request: {}", sign);
