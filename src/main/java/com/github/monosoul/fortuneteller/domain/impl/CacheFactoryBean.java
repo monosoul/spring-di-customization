@@ -2,21 +2,25 @@ package com.github.monosoul.fortuneteller.domain.impl;
 
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.ConcurrentHashMap;
+
 @Component
-public class CacheFactoryBean implements FactoryBean<Map<FortuneRequest, FortuneResponse>> {
+public class CacheFactoryBean implements FactoryBean<CacheFactoryBean.FortuneCache> {
 
     @Override
-    public Map<FortuneRequest, FortuneResponse> getObject() {
-        return new ConcurrentHashMap<>();
+    public FortuneCache getObject() {
+        return new FortuneCache();
     }
 
     @Override
     public Class<?> getObjectType() {
-        return ConcurrentHashMap.class;
+        return FortuneCache.class;
+    }
+
+    static class FortuneCache extends ConcurrentHashMap<FortuneRequest, FortuneResponse> {
+
     }
 }
