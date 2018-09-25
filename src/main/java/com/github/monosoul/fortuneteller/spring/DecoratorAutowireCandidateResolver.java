@@ -24,17 +24,17 @@ public class DecoratorAutowireCandidateResolver implements AutowireCandidateReso
 
     @Override
     public boolean isRequired(final DependencyDescriptor descriptor) {
-        return false;
+        return resolver.isRequired(descriptor);
     }
 
     @Override
     public Object getSuggestedValue(final DependencyDescriptor descriptor) {
-        return null;
+        return resolver.getSuggestedValue(descriptor);
     }
 
     @Override
     public Object getLazyResolutionProxyIfNecessary(final DependencyDescriptor descriptor, final String beanName) {
-        return null;
+        return resolver.getLazyResolutionProxyIfNecessary(descriptor, beanName);
     }
 
     private void buildDependencies(final DefaultListableBeanFactory beanFactory) {
