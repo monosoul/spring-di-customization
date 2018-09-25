@@ -23,7 +23,7 @@ public class AutomockTestExecutionListener extends AbstractTestExecutionListener
 
     @Override
     public int getOrder() {
-        return 1000;
+        return 1900;
     }
 
     @Override
