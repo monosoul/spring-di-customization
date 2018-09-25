@@ -13,7 +13,10 @@ public class CachingFortuneTeller implements FortuneTeller {
     private final FortuneTeller internal;
     private final Map<FortuneRequest, FortuneResponse> cache;
 
-    public CachingFortuneTeller(@NonNull final FortuneTeller internal, @NonNull final Map<FortuneRequest, FortuneResponse> cache) {
+    public CachingFortuneTeller(
+            @NonNull final FortuneTeller internal,
+            @NonNull final Map<FortuneRequest, FortuneResponse> cache
+    ) {
         this.internal = internal;
         this.cache = cache;
     }
