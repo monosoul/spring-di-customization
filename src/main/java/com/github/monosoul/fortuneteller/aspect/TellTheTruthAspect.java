@@ -38,7 +38,7 @@ public class TellTheTruthAspect {
 
     @Around("@annotation(com.github.monosoul.fortuneteller.aspect.TellTheTruth)&&" +
             "execution(public com.github.monosoul.fortuneteller.model.PersonalizedHoroscope " +
-            "com.github.monosoul.fortuneteller.web..*(*))")
+            "com.github.monosoul.fortuneteller.web..*(*, *))")
     public PersonalizedHoroscope tellTheTruthPersonalizedHoroscope(final ProceedingJoinPoint joinPoint) throws Throwable {
         log.info("Forcing the truth...");
         joinPoint.proceed();
