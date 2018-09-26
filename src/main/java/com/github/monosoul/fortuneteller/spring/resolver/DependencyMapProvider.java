@@ -15,6 +15,12 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 @Slf4j
 class DependencyMapProvider implements Function<ConfigurableListableBeanFactory, Map<DecoratorType, Set<String>>> {
 
+    private final Function<String, DecoratorType> decoratorTypeDeterminer;
+
+    DependencyMapProvider(@NonNull final Function<String, DecoratorType> decoratorTypeDeterminer) {
+        this.decoratorTypeDeterminer = decoratorTypeDeterminer;
+    }
+
     @Override
     public Map<DecoratorType, Set<String>> apply(@NonNull final ConfigurableListableBeanFactory beanFactory) {
         val dependencies = new HashMap<DecoratorType, Set<String>>();
@@ -30,14 +36,10 @@ class DependencyMapProvider implements Function<ConfigurableListableBeanFactory,
 
             val beanClassSimpleName = getSimpleName(beanDefinition.getBeanClassName());
             log.debug("{} simple class name is: {}", beanName, beanClassSimpleName);
-            for (val decoratorType : DecoratorType.values()) {
-                log.debug("Comparing {} with {} decorator type", beanClassSimpleName, decoratorType);
-                if (beanClassSimpleName.startsWith(decoratorType.getPrefix())) {
-                    log.debug("Adding {} to dependencies with type {}", beanName, decoratorType);
-                    dependencies.computeIfAbsent(decoratorType, d -> new HashSet<>()).add(beanName);
-                    break;
-                }
-            }
+
+            val decoratorType = decoratorTypeDeterminer.apply(beanClassSimpleName);
+            log.debug("Adding {} to dependencies with type {}", beanName, decoratorType);
+            dependencies.computeIfAbsent(decoratorType, d -> new HashSet<>()).add(beanName);
         }
 
         return dependencies;
