@@ -1,2 +1,2 @@
-# automocking-with-spring
-Repo to demonstrate automocking possibilities with spring
+# Spring dependency injection customization
+Repo to demonstrate DI customization possibilities with spring
