@@ -11,7 +11,7 @@ import lombok.var;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 
 @Slf4j
-class DecoratorDependencyManager implements DependencyManager {
+final class DecoratorDependencyManager implements DependencyManager {
 
     private final Map<DecoratorType, Set<String>> dependencies;
     private final Set<String> foundDecoratorsContainer;

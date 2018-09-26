@@ -13,7 +13,7 @@ import lombok.val;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 @Slf4j
-class DependencyMapProvider implements Function<ConfigurableListableBeanFactory, Map<DecoratorType, Set<String>>> {
+final class DependencyMapProvider implements Function<ConfigurableListableBeanFactory, Map<DecoratorType, Set<String>>> {
 
     private final Function<String, DecoratorType> decoratorTypeDeterminer;
 

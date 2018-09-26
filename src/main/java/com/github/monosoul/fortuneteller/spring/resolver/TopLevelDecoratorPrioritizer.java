@@ -10,7 +10,7 @@ import lombok.val;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 
 @Slf4j
-class TopLevelDecoratorPrioritizer implements Consumer<ConfigurableListableBeanFactory> {
+final class TopLevelDecoratorPrioritizer implements Consumer<ConfigurableListableBeanFactory> {
 
     private final Function<String, DecoratorType> decoratorTypeDeterminer;
 

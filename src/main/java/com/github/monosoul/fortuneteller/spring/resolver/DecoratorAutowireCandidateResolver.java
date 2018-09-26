@@ -10,7 +10,7 @@ import org.springframework.beans.factory.config.DependencyDescriptor;
 import org.springframework.beans.factory.support.AutowireCandidateResolver;
 
 @Slf4j
-class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
+final class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
 
     private final AutowireCandidateResolver resolver;
     private final Predicate<DependencyDescriptor> isSameTypeAsDependent;

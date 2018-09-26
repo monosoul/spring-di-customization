@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
 @Slf4j
-class DecoratorTypeDeterminer implements Function<String, DecoratorType> {
+final class DecoratorTypeDeterminer implements Function<String, DecoratorType> {
 
     @Override
     public DecoratorType apply(final String classSimpleName) {
