@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping(
         value = "/horoscope",
         produces = APPLICATION_JSON_UTF8_VALUE
 )
-@Slf4j
 public class PersonalizedHoroscopeTellController {
 
     private final HoroscopeTeller horoscopeTeller;
