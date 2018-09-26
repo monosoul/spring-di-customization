@@ -1,5 +1,6 @@
 package com.github.monosoul.fortuneteller.spring.resolver;
 
+import java.util.HashSet;
 import lombok.val;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
@@ -17,8 +18,20 @@ public class DecoratorAutowireCandidateResolverConfigurer implements BeanFactory
                 "BeanFactory needs to be a DefaultListableBeanFactory");
         val dlBeanFactory = (DefaultListableBeanFactory) beanFactory;
 
-        val resolver = new DecoratorAutowireCandidateResolver(dlBeanFactory);
+        val decoratorTypeDeterminer = new DecoratorTypeDeterminer();
 
-        dlBeanFactory.setAutowireCandidateResolver(resolver);
+        new TopLevelDecoratorPrioritizer(decoratorTypeDeterminer).accept(beanFactory);
+
+        dlBeanFactory.setAutowireCandidateResolver(
+                new DecoratorAutowireCandidateResolver(
+                        dlBeanFactory.getAutowireCandidateResolver(),
+                        new IsSameTypeAsDependent(),
+                        new DecoratorDependencyManager(
+                                new DependencyMapProvider(decoratorTypeDeterminer).apply(dlBeanFactory),
+                                new HashSet<>(),
+                                decoratorTypeDeterminer
+                        )
+                )
+        );
     }
 }
