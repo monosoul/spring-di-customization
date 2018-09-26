@@ -1,9 +1,10 @@
 package com.github.monosoul.fortuneteller.web;
 
-import com.github.monosoul.fortuneteller.aspect.TellTheTruth;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 import com.github.monosoul.fortuneteller.common.ZodiacSign;
 import com.github.monosoul.fortuneteller.domain.HoroscopeTeller;
 import com.github.monosoul.fortuneteller.model.Horoscope;
+import java.util.function.Function;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,16 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.function.Function;
-
-import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
-
+@Slf4j
 @RestController
 @RequestMapping(
         value = "/horoscope",
         produces = APPLICATION_JSON_UTF8_VALUE
 )
-@Slf4j
 public class HoroscopeTellController {
 
     private final HoroscopeTeller horoscopeTeller;
@@ -34,7 +31,6 @@ public class HoroscopeTellController {
         this.zodiacSignConverter = zodiacSignConverter;
     }
 
-    //@TellTheTruth
     @GetMapping(value = "/tell/{sign}")
     public Horoscope tell(@PathVariable final String sign) {
         log.info("Received request: {}", sign);
