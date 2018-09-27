@@ -1,27 +1,31 @@
 package com.github.monosoul.fortuneteller.automock.v2;
 
-import static java.util.Objects.requireNonNull;
+import lombok.NonNull;
+import lombok.val;
 import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.config.DependencyDescriptor;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.AutowireCandidateResolver;
-import org.springframework.beans.factory.support.RootBeanDefinition;
 
 public class MockedBeanByNameAutowireCandidateResolver implements AutowireCandidateResolver {
 
     private final AutowireCandidateResolver candidateResolver;
 
-    public MockedBeanByNameAutowireCandidateResolver(final AutowireCandidateResolver candidateResolver) {
-        this.candidateResolver = requireNonNull(candidateResolver);
+    public MockedBeanByNameAutowireCandidateResolver(@NonNull final AutowireCandidateResolver candidateResolver) {
+        this.candidateResolver = candidateResolver;
     }
 
     @Override
     public boolean isAutowireCandidate(final BeanDefinitionHolder beanDefinitionHolder, final DependencyDescriptor descriptor) {
-        final String expectedName = descriptor.getResolvableType().toString();
-        final RootBeanDefinition rootBeanDefinition = (RootBeanDefinition) beanDefinitionHolder.getBeanDefinition();
-        final String actualName = beanDefinitionHolder.getBeanName();
+        val dependencyType = descriptor.getResolvableType().resolve();
+        val dependencyTypeName = descriptor.getResolvableType().toString();
 
-        if (actualName.equals(expectedName) && rootBeanDefinition.getBeanClass() != null
-            && descriptor.getResolvableType().resolve().isAssignableFrom(rootBeanDefinition.getBeanClass())) {
+        val candidateBeanDefinition = (AbstractBeanDefinition) beanDefinitionHolder.getBeanDefinition();
+        val candidateTypeName = beanDefinitionHolder.getBeanName();
+
+        if (candidateTypeName.equals(dependencyTypeName) && candidateBeanDefinition.getBeanClass() != null
+            && dependencyType != null && dependencyType.isAssignableFrom(candidateBeanDefinition.getBeanClass())
+        ) {
             return true;
         }
 
