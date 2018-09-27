@@ -4,7 +4,7 @@ import org.springframework.beans.factory.config.BeanDefinitionHolder;
 
 interface DependencyManager {
 
-    boolean alreadyFound(final Class<?> dependentClass);
+    boolean alreadyFound(Class<?> dependentClass);
 
-    boolean isChildDecorator(final BeanDefinitionHolder bdHolder, final Class<?> dependentClass);
+    boolean isChildDecorator(BeanDefinitionHolder bdHolder, Class<?> dependentClass);
 }
