@@ -8,7 +8,7 @@ import lombok.NonNull;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CachingFortuneTeller implements FortuneTeller {
+public final class CachingFortuneTeller implements FortuneTeller {
 
     private final FortuneTeller internal;
     private final Map<FortuneRequest, FortuneResponse> cache;

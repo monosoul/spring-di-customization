@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LoggingFortuneTeller implements FortuneTeller {
+public final class LoggingFortuneTeller implements FortuneTeller {
 
     private final FortuneTeller internal;
     private final Logger logger;
