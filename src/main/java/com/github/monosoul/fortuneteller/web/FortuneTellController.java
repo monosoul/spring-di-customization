@@ -4,6 +4,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8_VALUE;
 import com.github.monosoul.fortuneteller.domain.FortuneTeller;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +22,7 @@ public class FortuneTellController {
 
     private final FortuneTeller fortuneTeller;
 
-    public FortuneTellController(FortuneTeller fortuneTeller) {
+    public FortuneTellController(@NonNull final FortuneTeller fortuneTeller) {
         this.fortuneTeller = fortuneTeller;
     }
 
