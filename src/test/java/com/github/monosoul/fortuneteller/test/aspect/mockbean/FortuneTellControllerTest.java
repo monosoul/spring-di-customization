@@ -8,7 +8,6 @@ import com.github.monosoul.fortuneteller.domain.FortuneTeller;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.web.FortuneTellController;
 import lombok.val;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -19,9 +18,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@Disabled
 @SpringJUnitConfig
-@ActiveProfiles("unit-mockbean")
+@ActiveProfiles({"unit-mockbean", "tellTheTruth"})
 public class FortuneTellControllerTest {
 
     @MockBean
@@ -42,5 +40,6 @@ public class FortuneTellControllerTest {
     @Import({FortuneTellController.class, TellTheTruthAspect.class})
     @EnableAspectJAutoProxy
     public static class Config {
+
     }
 }
