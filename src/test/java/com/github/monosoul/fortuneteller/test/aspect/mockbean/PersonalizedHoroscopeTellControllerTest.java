@@ -9,7 +9,6 @@ import com.github.monosoul.fortuneteller.domain.HoroscopeTeller;
 import com.github.monosoul.fortuneteller.web.PersonalizedHoroscopeTellController;
 import java.util.function.Function;
 import lombok.val;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -20,9 +19,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
-@Disabled
 @SpringJUnitConfig
-@ActiveProfiles("unit-mockbean")
+@ActiveProfiles({"unit-mockbean", "tellTheTruth"})
 public class PersonalizedHoroscopeTellControllerTest {
 
     private static final int LIMIT = 10;
@@ -50,5 +48,6 @@ public class PersonalizedHoroscopeTellControllerTest {
     @Import({PersonalizedHoroscopeTellController.class, TellTheTruthAspect.class})
     @EnableAspectJAutoProxy
     public static class Config {
+
     }
 }

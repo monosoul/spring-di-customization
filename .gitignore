@@ -34,6 +34,7 @@ gradle-app.setting
 .gradletasknamecache
 
 .idea/
+!.idea/runConfigurations/
 out/
 target/
 *.iml

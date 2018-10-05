@@ -70,10 +70,12 @@ public class AutomockTestExecutionListener extends AbstractTestExecutionListener
         val beanName = forClass(clazz).toString();
         log.debug("Creating bean {}", beanName);
 
-        val bean = beanFactory.createBean(clazz);
-        beanFactory.registerSingleton(beanName, bean);
+        if (!beanFactory.containsBean(beanName)) {
+            val bean = beanFactory.createBean(clazz);
+            beanFactory.registerSingleton(beanName, bean);
+        }
 
-        return bean;
+        return beanFactory.getBean(beanName, clazz);
     }
 
     private <T> void createMocksForParameters(final Constructor<T> constructor, final DefaultListableBeanFactory beanFactory) {

@@ -1,5 +1,6 @@
-package com.github.monosoul.fortuneteller.test.functional;
+package com.github.monosoul.fortuneteller.test.functional.tellthetruth;
 
+import static com.github.monosoul.fortuneteller.aspect.TellTheTruthAspect.THE_TRUTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.OK;
@@ -13,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @Slf4j
 @ExtendWith(SpringExtension.class)
+@ActiveProfiles("tellTheTruth")
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class FortuneTellControllerTestFT {
 
@@ -41,7 +44,7 @@ public class FortuneTellControllerTestFT {
 
         assertThat(actual.getStatusCode()).isEqualByComparingTo(OK);
         assertThat(actual.getBody()).isNotNull();
-        assertThat(actual.getBody().getMessage()).isNotBlank();
+        assertThat(actual.getBody().getMessage()).isEqualTo(THE_TRUTH);
 
         log.info("Received response: {}", actual.getBody());
     }

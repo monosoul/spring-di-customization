@@ -7,10 +7,8 @@ import com.github.monosoul.fortuneteller.automock.Automocked;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.web.FortuneTellController;
 import lombok.val;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-@Disabled
 public class FortuneTellControllerTest extends TestBase {
 
     @Automocked
