@@ -1,6 +1,7 @@
 package com.github.monosoul.fortuneteller.spring.order;
 
 import lombok.Builder;
+import lombok.Builder.Default;
 import lombok.Value;
 
 @Value
@@ -8,6 +9,8 @@ import lombok.Value;
 class BeanDefinitionSpecificationImpl implements BeanDefinitionSpecification {
 
     Class<?> clazz;
-    String previousBeanName;
-    boolean primary;
+    @Default
+    String previousBeanName = "";
+    @Default
+    boolean primary = false;
 }
