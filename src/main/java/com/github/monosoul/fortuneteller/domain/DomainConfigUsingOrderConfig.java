@@ -14,9 +14,9 @@ public class DomainConfigUsingOrderConfig {
     @Bean
     public OrderConfig<FortuneTeller> fortuneTellerOrderConfig() {
         return new OrderConfig<>(
-                Globa.class,
+                LoggingFortuneTeller.class,
                 CachingFortuneTeller.class,
-                LoggingFortuneTeller.class
+                Globa.class
         );
     }
 }
