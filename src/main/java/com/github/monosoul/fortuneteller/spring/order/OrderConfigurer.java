@@ -7,6 +7,7 @@ import lombok.var;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.AutowireCandidateQualifier;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.stereotype.Component;
@@ -26,28 +27,28 @@ public class OrderConfigurer implements BeanFactoryPostProcessor {
     }
 
     private void processOrderConfig(final OrderConfig<?> orderConfig, final DefaultListableBeanFactory beanFactory) {
-        val lastItemIndex = orderConfig.getClasses().length - 1;
-        val topLevelBeanClass = orderConfig.getClasses()[lastItemIndex];
-        val topLevelBeanName = topLevelBeanClass.getTypeName();
-        val topLevelBeanDefinition = genericBeanDefinition(topLevelBeanClass)
-                .setAutowireMode(AUTOWIRE_AUTODETECT)
-                .getBeanDefinition();
-        topLevelBeanDefinition.setPrimary(true);
-        topLevelBeanDefinition.addQualifier(new AutowireCandidateQualifier(OrderQualifier.class, ""));
-        beanFactory.registerBeanDefinition(topLevelBeanName, topLevelBeanDefinition);
-
-        var nextBeanName = topLevelBeanName;
-        for (var i = lastItemIndex - 1; i >= 0; i--) {
+        var previousBeanName = "";
+        for (var i = 0; i < orderConfig.getClasses().length; i++) {
             val currentBeanClass = orderConfig.getClasses()[i];
             val currentBeanName = currentBeanClass.getTypeName();
 
-            val currentBeanDefinition = genericBeanDefinition(currentBeanClass)
-                    .setAutowireMode(AUTOWIRE_AUTODETECT)
-                    .getBeanDefinition();
-            currentBeanDefinition.addQualifier(new AutowireCandidateQualifier(OrderQualifier.class, nextBeanName));
-            beanFactory.registerBeanDefinition(currentBeanName, currentBeanDefinition);
+            beanFactory.registerBeanDefinition(
+                    currentBeanName,
+                    createBeanDefinition(currentBeanClass, previousBeanName, i == 0)
+            );
 
-            nextBeanName = currentBeanName;
+            previousBeanName = currentBeanName;
         }
+    }
+
+    @SuppressWarnings("deprecation")
+    private AbstractBeanDefinition createBeanDefinition(final Class<?> clazz, final String nextBeanName, final boolean isPrimary) {
+        val beanDefinition = genericBeanDefinition(clazz)
+                .setAutowireMode(AUTOWIRE_AUTODETECT)
+                .getBeanDefinition();
+        beanDefinition.setPrimary(isPrimary);
+        beanDefinition.addQualifier(new AutowireCandidateQualifier(OrderQualifier.class, nextBeanName));
+
+        return beanDefinition;
     }
 }
