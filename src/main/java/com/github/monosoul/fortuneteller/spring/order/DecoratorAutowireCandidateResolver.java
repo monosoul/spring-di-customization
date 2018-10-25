@@ -8,7 +8,7 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.AutowireCandidateResolver;
 
 @RequiredArgsConstructor
-public class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
+public final class DecoratorAutowireCandidateResolver implements AutowireCandidateResolver {
 
     private final AutowireCandidateResolver resolver;
 

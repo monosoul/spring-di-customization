@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 @Component
-public class DecoratorAutowireCandidateResolverConfigurer implements BeanFactoryPostProcessor {
+public final class DecoratorAutowireCandidateResolverConfigurer implements BeanFactoryPostProcessor {
 
     @Override
     public void postProcessBeanFactory(final ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
