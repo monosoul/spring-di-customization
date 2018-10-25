@@ -9,6 +9,7 @@ import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.AutowireCandidateQualifier;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
@@ -26,7 +27,7 @@ public class OrderConfigurer implements BeanFactoryPostProcessor {
                    .forEach((key, value) -> processOrderConfig(value, beanFactory));
     }
 
-    private void processOrderConfig(final OrderConfig<?> orderConfig, final DefaultListableBeanFactory beanFactory) {
+    private void processOrderConfig(final OrderConfig<?> orderConfig, final BeanDefinitionRegistry beanFactory) {
         var previousBeanName = "";
         for (var i = 0; i < orderConfig.getClasses().length; i++) {
             val currentBeanClass = orderConfig.getClasses()[i];
