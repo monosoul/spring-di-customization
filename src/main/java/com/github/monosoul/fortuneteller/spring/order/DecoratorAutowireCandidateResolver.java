@@ -20,14 +20,12 @@ public class DecoratorAutowireCandidateResolver implements AutowireCandidateReso
 
         if (dependencyType.isAssignableFrom(dependentType) && candidateBeanDefinition.hasBeanClass()
             && dependencyType.isAssignableFrom(candidateBeanDefinition.getBeanClass())) {
-            val acq = candidateBeanDefinition.getQualifier(OrderQualifier.class.getTypeName());
-            if (acq != null) {
-                if (dependentType.getTypeName().equals(acq.getAttribute("value"))) {
-                    return true;
-                }
-                return false;
+            val candidateQualifier = candidateBeanDefinition.getQualifier(OrderQualifier.class.getTypeName());
+            if (candidateQualifier != null) {
+                return dependentType.getTypeName().equals(candidateQualifier.getAttribute("value"));
             }
         }
+
         return resolver.isAutowireCandidate(bdHolder, descriptor);
     }
 
