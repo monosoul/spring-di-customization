@@ -19,10 +19,16 @@ public final class OrderConfigurer implements BeanFactoryPostProcessor {
                 "BeanFactory needs to be a DefaultListableBeanFactory");
         val beanFactory = (DefaultListableBeanFactory) configurableListableBeanFactory;
 
+        val orderConfigPreProcessor = orderConfigPreProcessor(beanFactory);
         val orderConfigProcessor = orderConfigProcessor(beanFactory);
 
-        beanFactory.getBeansOfType(OrderConfig.class)
-                   .forEach((key, value) -> orderConfigProcessor.accept(value));
+        beanFactory.getBeansOfType(OrderConfig.class).values().stream()
+                   .peek(orderConfigPreProcessor::accept)
+                   .forEach(orderConfigProcessor::accept);
+    }
+
+    Consumer<OrderConfig<?>> orderConfigPreProcessor(final BeanDefinitionRegistry beanDefinitionRegistry) {
+        return new OrderConfigPreProcessor(beanDefinitionRegistry);
     }
 
     Consumer<OrderConfig<?>> orderConfigProcessor(final BeanDefinitionRegistry beanDefinitionRegistry) {
