@@ -10,7 +10,7 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 
 @RequiredArgsConstructor
-public class OrderConfigPreProcessor implements Consumer<OrderConfig<?>> {
+final class OrderConfigPreProcessor implements Consumer<OrderConfig<?>> {
 
     private final BeanDefinitionRegistry beanDefinitionRegistry;
 
