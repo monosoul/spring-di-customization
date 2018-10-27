@@ -3,24 +3,28 @@ package com.github.monosoul.fortuneteller.spring.order;
 import java.util.function.Consumer;
 import lombok.val;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.ListableBeanFactory;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionRegistryPostProcessor;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
 @Component
-public final class OrderConfigurer implements BeanFactoryPostProcessor {
+public final class OrderConfigurer implements BeanDefinitionRegistryPostProcessor {
 
     @Override
-    public void postProcessBeanFactory(final ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-        Assert.state(configurableListableBeanFactory instanceof DefaultListableBeanFactory,
-                "BeanFactory needs to be a DefaultListableBeanFactory");
-        val beanFactory = (DefaultListableBeanFactory) configurableListableBeanFactory;
+    public void postProcessBeanFactory(final ConfigurableListableBeanFactory beanFactory) throws BeansException {
+    }
 
-        val orderConfigPreProcessor = orderConfigPreProcessor(beanFactory);
-        val orderConfigProcessor = orderConfigProcessor(beanFactory);
+    @Override
+    public void postProcessBeanDefinitionRegistry(final BeanDefinitionRegistry registry) throws BeansException {
+        Assert.state(registry instanceof ListableBeanFactory,
+                "BeanRegistry needs to be a ListableBeanFactory");
+        val beanFactory = (ListableBeanFactory) registry;
+
+        val orderConfigPreProcessor = orderConfigPreProcessor(registry);
+        val orderConfigProcessor = orderConfigProcessor(registry);
 
         beanFactory.getBeansOfType(OrderConfig.class).values().stream()
                    .peek(orderConfigPreProcessor::accept)
