@@ -16,7 +16,7 @@ final class OrderConfigPreProcessor implements Consumer<OrderConfig<?>> {
 
     @Override
     public void accept(final OrderConfig<?> orderConfig) {
-        val classesSet = stream(orderConfig.getClasses()).map(Class::getName).collect(toSet());
+        val classesSet = orderConfig.getClasses().stream().map(Class::getName).collect(toSet());
 
         stream(beanDefinitionRegistry.getBeanDefinitionNames())
                 .map(n -> new SimpleImmutableEntry<>(n, beanDefinitionRegistry.getBeanDefinition(n)))

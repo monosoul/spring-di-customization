@@ -17,8 +17,8 @@ final class OrderConfigProcessor implements Consumer<OrderConfig<?>> {
     @Override
     public void accept(final OrderConfig<?> orderConfig) {
         var previousBeanName = "";
-        for (var i = 0; i < orderConfig.getClasses().length; i++) {
-            val currentBeanClass = orderConfig.getClasses()[i];
+        for (var i = 0; i < orderConfig.getClasses().size(); i++) {
+            val currentBeanClass = orderConfig.getClasses().get(i);
             val currentBeanName = currentBeanClass.getTypeName();
 
             beanDefinitionRegistry.registerBeanDefinition(
