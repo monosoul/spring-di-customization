@@ -2,7 +2,7 @@ group = "com.github.monosoul"
 version = "1.0"
 
 val springBootVersion: String by extra
-val byteBuddyVersion by extra { "1.8.22" }
+val byteBuddyVersion by extra { "1.9.2" }
 val junitVersion by extra { "5.3.1" }
 
 buildscript {
@@ -41,7 +41,7 @@ dependencies {
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     testRuntime("org.junit.vintage:junit-vintage-engine:$junitVersion")
     testCompile("org.assertj:assertj-core:3.9.1")
-    testCompile("org.mockito:mockito-core:2.22.0") {
+    testCompile("org.mockito:mockito-core:2.23.0") {
         exclude("net.bytebuddy")
     }
     testCompile("net.bytebuddy:byte-buddy:$byteBuddyVersion")
