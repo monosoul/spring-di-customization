@@ -6,7 +6,6 @@ import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 
 @RequiredArgsConstructor
@@ -20,8 +19,6 @@ final class OrderConfigPreProcessor implements Consumer<OrderConfig<?>> {
 
         stream(beanDefinitionRegistry.getBeanDefinitionNames())
                 .map(n -> new SimpleImmutableEntry<>(n, beanDefinitionRegistry.getBeanDefinition(n)))
-                .filter(e -> AbstractBeanDefinition.class.isAssignableFrom(e.getValue().getClass()))
-                .map(e -> new SimpleImmutableEntry<>(e.getKey(), (AbstractBeanDefinition) e.getValue()))
                 .filter(e -> classesSet.contains(e.getValue().getBeanClassName()))
                 .forEach(e -> beanDefinitionRegistry.removeBeanDefinition(e.getKey()));
     }

@@ -9,7 +9,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 import java.util.List;
@@ -25,7 +24,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.Mock;
 import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 
 class OrderConfigPreProcessorTest {
@@ -49,22 +47,8 @@ class OrderConfigPreProcessorTest {
 
     @ParameterizedTest
     @MethodSource("stringArrayAsArgumentsStream")
-    void doNothingIfNotAbstractBeanDefinition(final String[] beanDefinitionNames) {
-        when(beanDefinitionRegistry.getBeanDefinitionNames()).thenReturn(beanDefinitionNames);
-        when(beanDefinitionRegistry.getBeanDefinition(anyString())).thenAnswer((Answer<BeanDefinition>) i -> mock(BeanDefinition.class));
-
-        new OrderConfigPreProcessor(beanDefinitionRegistry).accept(orderConfig);
-
-        verify(beanDefinitionRegistry).getBeanDefinitionNames();
-        verify(beanDefinitionRegistry, times(beanDefinitionNames.length)).getBeanDefinition(anyString());
-        verify(beanDefinitionRegistry, never()).removeBeanDefinition(anyString());
-        verifyZeroInteractions(classNameSet);
-    }
-
-    @ParameterizedTest
-    @MethodSource("stringArrayAsArgumentsStream")
     void doNothingIfClassesDoesNotContainClassOfSuchBean(final String[] beanDefinitionNames) {
-        val beanDefinition = mock(AbstractBeanDefinition.class);
+        val beanDefinition = mock(BeanDefinition.class);
         when(beanDefinition.getBeanClassName()).thenAnswer((Answer<String>) invocation -> randomAlphabetic(LIMIT));
 
         when(beanDefinitionRegistry.getBeanDefinitionNames()).thenReturn(beanDefinitionNames);
@@ -84,7 +68,7 @@ class OrderConfigPreProcessorTest {
     @ParameterizedTest
     @MethodSource("stringArrayAsArgumentsStream")
     void removeDefinitionsIfClassesContainsSuchBeans(final String[] beanDefinitionNames) {
-        val beanDefinition = mock(AbstractBeanDefinition.class);
+        val beanDefinition = mock(BeanDefinition.class);
         when(beanDefinition.getBeanClassName()).thenAnswer((Answer<String>) invocation -> randomAlphabetic(LIMIT));
 
         when(beanDefinitionRegistry.getBeanDefinitionNames()).thenReturn(beanDefinitionNames);
