@@ -30,7 +30,7 @@ public class RestrictionAspect {
         val ip = getRequestSourceIp();
         log.debug("Source IP: {}", ip);
 
-        if (!ipIsAllowed.test(getRequestSourceIp())) {
+        if (!ipIsAllowed.test(ip)) {
             throw new AccessDeniedException(format("Access for IP [%s] is denied", ip));
         }
     }
