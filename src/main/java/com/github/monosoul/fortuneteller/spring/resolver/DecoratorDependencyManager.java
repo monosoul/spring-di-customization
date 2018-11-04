@@ -46,7 +46,7 @@ final class DecoratorDependencyManager implements DependencyManager {
             return false;
         }
 
-        for (var i = dependentDecoratorType.ordinal(); i < lastDecoratorTypeIndex; i++) {
+        for (int i = dependentDecoratorType.ordinal(); i < lastDecoratorTypeIndex; i++) {
             val dependencyDecoratorType = decoratorTypes[i + 1];
             log.debug("Looking for dependencies of decorator type {}", dependencyDecoratorType);
             if (dependencies.get(dependencyDecoratorType).contains(candidateBeanName)) {
