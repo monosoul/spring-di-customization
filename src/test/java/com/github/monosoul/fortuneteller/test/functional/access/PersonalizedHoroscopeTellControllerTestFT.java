@@ -1,9 +1,9 @@
-package com.github.monosoul.fortuneteller.test.functional.tellthetruth;
+package com.github.monosoul.fortuneteller.test.functional.access;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.OK;
-import com.github.monosoul.fortuneteller.test.functional.model.Horoscope;
+import com.github.monosoul.fortuneteller.test.functional.model.PersonalizedHoroscope;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.junit.jupiter.api.Test;
@@ -19,7 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @ActiveProfiles("restrictAccess")
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-public class HoroscopeTellControllerFT {
+public class PersonalizedHoroscopeTellControllerTestFT {
 
     @LocalServerPort
     private int port;
@@ -29,11 +29,14 @@ public class HoroscopeTellControllerFT {
 
     @Test
     void test() {
-        val actual = client.getForEntity("http://localhost:" + port + "/horoscope/tell/aquarius", Horoscope.class);
+        val actual = client.getForEntity(
+                "http://localhost:" + port + "/horoscope/tell/personal/pETROV/aquarius", PersonalizedHoroscope.class
+        );
 
         assertThat(actual.getStatusCode()).isEqualByComparingTo(OK);
         assertThat(actual.getBody()).isNotNull();
-        assertThat(actual.getBody().getMessage()).isNotNull().isNotEmpty();
+        assertThat(actual.getBody().getName()).isEqualTo("Petrov");
+        assertThat(actual.getBody().getHoroscope().getMessage()).isNotNull().isNotEmpty();
 
         log.info("Received response: {}", actual.getBody());
     }
