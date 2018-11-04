@@ -2,8 +2,8 @@ package com.github.monosoul.fortuneteller.test.functional.access;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
-import static org.springframework.http.HttpStatus.OK;
-import com.github.monosoul.fortuneteller.test.functional.model.PersonalizedHoroscope;
+import static org.springframework.http.HttpStatus.FORBIDDEN;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.junit.jupiter.api.Test;
@@ -27,16 +27,16 @@ public class PersonalizedHoroscopeTellControllerTestFT {
     @Autowired
     private TestRestTemplate client;
 
+    @SuppressWarnings("unchecked")
     @Test
     void test() {
         val actual = client.getForEntity(
-                "http://localhost:" + port + "/horoscope/tell/personal/pETROV/aquarius", PersonalizedHoroscope.class
+                "http://localhost:" + port + "/horoscope/tell/personal/pETROV/aquarius", Map.class
         );
 
-        assertThat(actual.getStatusCode()).isEqualByComparingTo(OK);
+        assertThat(actual.getStatusCode()).isEqualByComparingTo(FORBIDDEN);
         assertThat(actual.getBody()).isNotNull();
-        assertThat(actual.getBody().getName()).isEqualTo("Petrov");
-        assertThat(actual.getBody().getHoroscope().getMessage()).isNotNull().isNotEmpty();
+        assertThat(actual.getBody().get("message")).isEqualTo("Access for IP [127.0.0.1] is denied");
 
         log.info("Received response: {}", actual.getBody());
     }
