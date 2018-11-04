@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.automock.v2;
+package com.github.monosoul.fortuneteller.automock;
 
 import lombok.NonNull;
 import lombok.val;
