@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.test.aspect.automock.v2;
+package com.github.monosoul.fortuneteller.test.aspect.automock;
 
 import static com.github.monosoul.fortuneteller.aspect.TellTheTruthAspect.THE_TRUTH;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
@@ -15,7 +15,6 @@ public class PersonalizedHoroscopeTellControllerTest extends TestBase {
     @Automocked
     private PersonalizedHoroscopeTellController controller;
 
-    //This will NOT fail
     @Test
     void tellTheTruth() {
         val actual = controller.tell(randomAlphabetic(LIMIT), randomAlphabetic(LIMIT));
