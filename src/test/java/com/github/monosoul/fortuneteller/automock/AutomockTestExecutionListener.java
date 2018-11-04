@@ -10,7 +10,6 @@ import static org.springframework.util.ReflectionUtils.setField;
 import java.lang.reflect.Constructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.test.context.TestContext;
@@ -56,7 +55,7 @@ public class AutomockTestExecutionListener extends AbstractTestExecutionListener
     private Constructor<?> findConstructorToAutomock(final Class<?> clazz) {
         log.debug("Looking for suitable constructor of {}", clazz.getCanonicalName());
 
-        var fallBackConstructor = clazz.getDeclaredConstructors()[0];
+        Constructor<?> fallBackConstructor = clazz.getDeclaredConstructors()[0];
         for (val constructor : clazz.getDeclaredConstructors()) {
             if (constructor.getParameterTypes().length > fallBackConstructor.getParameterTypes().length) {
                 fallBackConstructor = constructor;
@@ -91,7 +90,7 @@ public class AutomockTestExecutionListener extends AbstractTestExecutionListener
 
         val constructorArgsAmount = constructor.getParameterTypes().length;
 
-        for (var i = 0; i < constructorArgsAmount; i++) {
+        for (int i = 0; i < constructorArgsAmount; i++) {
             val parameterType = forConstructorParameter(constructor, i);
             val beanName = parameterType.toString();
 
