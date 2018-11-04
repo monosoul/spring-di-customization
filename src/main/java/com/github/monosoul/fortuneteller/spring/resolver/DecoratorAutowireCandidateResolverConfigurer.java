@@ -9,7 +9,7 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
-//@Component
+@Component
 public final class DecoratorAutowireCandidateResolverConfigurer implements BeanFactoryPostProcessor {
 
     @Override
