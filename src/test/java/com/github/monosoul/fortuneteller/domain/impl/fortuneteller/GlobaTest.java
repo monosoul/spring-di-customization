@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.fortuneteller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;

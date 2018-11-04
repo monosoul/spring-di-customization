@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.fortuneteller;
 
 import com.github.monosoul.fortuneteller.da.FortuneResponseRepository;
 import com.github.monosoul.fortuneteller.da.PersonalDataRepository;

@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.horoscopeteller;
 
 import java.util.function.Function;
 import org.springframework.stereotype.Component;

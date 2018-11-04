@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.horoscopeteller;
 
 import static ch.qos.logback.classic.Level.DEBUG;
 import static java.lang.String.format;

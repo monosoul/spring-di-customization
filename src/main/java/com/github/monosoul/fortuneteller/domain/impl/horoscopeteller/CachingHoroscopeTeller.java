@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.horoscopeteller;
 
 import com.github.monosoul.fortuneteller.common.ZodiacSign;
 import com.github.monosoul.fortuneteller.domain.HoroscopeTeller;

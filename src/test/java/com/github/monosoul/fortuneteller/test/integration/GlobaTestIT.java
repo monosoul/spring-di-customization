@@ -7,7 +7,7 @@ import static org.apache.commons.lang3.RandomUtils.nextInt;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
-import com.github.monosoul.fortuneteller.domain.impl.Globa;
+import com.github.monosoul.fortuneteller.domain.impl.fortuneteller.Globa;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import java.util.stream.Stream;
 import lombok.val;
@@ -54,23 +54,23 @@ public class GlobaTestIT {
 
     private static Stream<FortuneRequest> validRequestStream() {
         return generate(() ->
-                                FortuneRequest.builder()
-                                              .name(randomAlphabetic(LIMIT))
-                                              .zodiacSign(randomAlphabetic(LIMIT))
-                                              .age(nextInt())
-                                              .email(randomAlphabetic(LIMIT))
-                                              .build()
+                FortuneRequest.builder()
+                              .name(randomAlphabetic(LIMIT))
+                              .zodiacSign(randomAlphabetic(LIMIT))
+                              .age(nextInt())
+                              .email(randomAlphabetic(LIMIT))
+                              .build()
         ).limit(LIMIT);
     }
 
     private static Stream<FortuneRequest> invalidRequestStream() {
         return generate(() ->
-                                FortuneRequest.builder()
-                                              .name(randomAlphabetic(LIMIT))
-                                              .zodiacSign(randomAlphabetic(LIMIT))
-                                              .age(nextInt())
-                                              .email(randomAlphabetic(101, 200))
-                                              .build()
+                FortuneRequest.builder()
+                              .name(randomAlphabetic(LIMIT))
+                              .zodiacSign(randomAlphabetic(LIMIT))
+                              .age(nextInt())
+                              .email(randomAlphabetic(101, 200))
+                              .build()
         ).limit(LIMIT);
     }
 }

@@ -1,6 +1,6 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.fortuneteller;
 
-import static com.github.monosoul.fortuneteller.domain.impl.EmailValidator.MAX_LENGTH;
+import static com.github.monosoul.fortuneteller.domain.impl.fortuneteller.EmailValidator.MAX_LENGTH;
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;

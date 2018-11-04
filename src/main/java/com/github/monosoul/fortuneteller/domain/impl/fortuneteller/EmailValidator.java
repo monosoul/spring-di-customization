@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.fortuneteller;
 
 import java.util.function.Predicate;
 import org.springframework.stereotype.Component;

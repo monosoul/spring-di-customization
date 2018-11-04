@@ -1,12 +1,11 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.fortuneteller;
 
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.PersonalData;
-import lombok.NonNull;
-import org.springframework.stereotype.Component;
-
 import java.util.function.Function;
 import java.util.function.Predicate;
+import lombok.NonNull;
+import org.springframework.stereotype.Component;
 
 @Component
 public final class PersonalDataExtractor implements Function<FortuneRequest, PersonalData> {
@@ -24,9 +23,9 @@ public final class PersonalDataExtractor implements Function<FortuneRequest, Per
         }
 
         return PersonalData.builder()
-                .name(request.getName())
-                .age(request.getAge())
-                .email(request.getEmail())
-                .build();
+                           .name(request.getName())
+                           .age(request.getAge())
+                           .email(request.getEmail())
+                           .build();
     }
 }

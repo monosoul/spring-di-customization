@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.horoscopeteller;
 
 import static org.slf4j.LoggerFactory.getLogger;
 import com.github.monosoul.fortuneteller.common.ZodiacSign;
