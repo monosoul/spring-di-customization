@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.domain.impl;
+package com.github.monosoul.fortuneteller.domain.impl.horoscopeteller;
 
 import static com.github.monosoul.fortuneteller.util.Util.randomEnum;
 import static org.assertj.core.api.Assertions.assertThat;
