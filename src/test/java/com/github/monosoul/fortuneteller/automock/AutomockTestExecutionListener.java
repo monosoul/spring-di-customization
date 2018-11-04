@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.automock.v2;
+package com.github.monosoul.fortuneteller.automock;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.withSettings;
@@ -7,7 +7,6 @@ import static org.springframework.core.ResolvableType.forConstructorParameter;
 import static org.springframework.core.annotation.AnnotationUtils.getAnnotation;
 import static org.springframework.util.ReflectionUtils.makeAccessible;
 import static org.springframework.util.ReflectionUtils.setField;
-import com.github.monosoul.fortuneteller.automock.Automocked;
 import java.lang.reflect.Constructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
@@ -17,7 +16,6 @@ import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
 
-@SuppressWarnings("Duplicates")
 @Slf4j
 public class AutomockTestExecutionListener extends AbstractTestExecutionListener {
 
