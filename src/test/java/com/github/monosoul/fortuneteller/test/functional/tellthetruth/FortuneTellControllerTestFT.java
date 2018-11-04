@@ -1,6 +1,5 @@
 package com.github.monosoul.fortuneteller.test.functional.tellthetruth;
 
-import static com.github.monosoul.fortuneteller.aspect.TellTheTruthAspect.THE_TRUTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.OK;
@@ -19,7 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @Slf4j
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("tellTheTruth")
+@ActiveProfiles("restrictAccess")
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class FortuneTellControllerTestFT {
 
@@ -44,7 +43,7 @@ public class FortuneTellControllerTestFT {
 
         assertThat(actual.getStatusCode()).isEqualByComparingTo(OK);
         assertThat(actual.getBody()).isNotNull();
-        assertThat(actual.getBody().getMessage()).isEqualTo(THE_TRUTH);
+        assertThat(actual.getBody().getMessage()).isNotNull().isNotEmpty();
 
         log.info("Received response: {}", actual.getBody());
     }
