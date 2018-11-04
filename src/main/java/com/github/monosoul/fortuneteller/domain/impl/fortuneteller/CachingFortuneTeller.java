@@ -5,6 +5,7 @@ import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
 import java.util.Map;
 import lombok.NonNull;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,6 +15,7 @@ public final class CachingFortuneTeller implements FortuneTeller {
     private final Map<FortuneRequest, FortuneResponse> cache;
 
     public CachingFortuneTeller(
+            @Qualifier("globa")
             @NonNull final FortuneTeller internal,
             @NonNull final Map<FortuneRequest, FortuneResponse> cache
     ) {
