@@ -1,14 +1,17 @@
 package com.github.monosoul.fortuneteller.domain.impl.fortuneteller;
 
+import static com.github.monosoul.fortuneteller.spring.DecoratorType.NOT_DECORATOR;
 import com.github.monosoul.fortuneteller.da.FortuneResponseRepository;
 import com.github.monosoul.fortuneteller.da.PersonalDataRepository;
 import com.github.monosoul.fortuneteller.domain.FortuneTeller;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
 import com.github.monosoul.fortuneteller.model.PersonalData;
+import com.github.monosoul.fortuneteller.spring.qualifier.Decorator;
 import java.util.function.Function;
 import org.springframework.stereotype.Service;
 
+@Decorator(NOT_DECORATOR)
 @Service
 public final class Globa implements FortuneTeller {
 
