@@ -5,7 +5,7 @@ import static com.github.monosoul.fortuneteller.util.Util.randomEnum;
 import static java.util.stream.Stream.generate;
 import static org.assertj.core.api.Assertions.assertThat;
 import com.github.monosoul.fortuneteller.common.ZodiacSign;
-import com.github.monosoul.fortuneteller.domain.impl.horoscopeteller.Gypsy;
+import com.github.monosoul.fortuneteller.domain.HoroscopeTeller;
 import java.util.stream.Stream;
 import lombok.val;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,17 +18,18 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig
 @ActiveProfiles("integration")
 @ContextConfiguration(classes = TestITConfiguration.class)
-public class GypsyTestIT {
+class HoroscopeTellerTestIT {
 
     private static final int LIMIT = 10;
 
     @Autowired
-    private Gypsy gypsy;
+    private HoroscopeTeller horoscopeTeller;
 
+    @SuppressWarnings("Java8MapApi")
     @ParameterizedTest
     @MethodSource("zodiacSignStream")
     void tell(final ZodiacSign sign) {
-        val actual = gypsy.tell(sign);
+        val actual = horoscopeTeller.tell(sign);
 
         assertThat(actual).isNotNull();
         if (HOROSCOPES.containsKey(sign)) {
