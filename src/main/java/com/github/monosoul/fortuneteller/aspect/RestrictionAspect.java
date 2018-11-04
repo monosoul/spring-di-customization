@@ -28,7 +28,7 @@ public class RestrictionAspect {
     @Before("execution(public * com.github.monosoul.fortuneteller.web.*.*(..))")
     public void checkAccess() {
         val ip = getRequestSourceIp();
-        log.info("Source IP: {}", ip);
+        log.debug("Source IP: {}", ip);
 
         if (!ipIsAllowed.test(getRequestSourceIp())) {
             throw new AccessDeniedException(format("Access for IP [%s] is denied", ip));
