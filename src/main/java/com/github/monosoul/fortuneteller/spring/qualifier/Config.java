@@ -1,13 +1,12 @@
 package com.github.monosoul.fortuneteller.spring.qualifier;
 
+import static java.util.Set.of;
 import lombok.val;
 import org.springframework.beans.factory.annotation.CustomAutowireConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static java.util.Set.of;
-
-//@Configuration
+@Configuration
 public class Config {
 
     @Bean
