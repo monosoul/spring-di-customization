@@ -7,7 +7,7 @@ import static org.apache.commons.lang3.RandomUtils.nextInt;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.mock;
-import com.github.monosoul.fortuneteller.domain.impl.fortuneteller.Globa;
+import com.github.monosoul.fortuneteller.domain.FortuneTeller;
 import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import java.util.stream.Stream;
 import lombok.val;
@@ -22,17 +22,17 @@ import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 @SpringJUnitConfig
 @ActiveProfiles("integration")
 @ContextConfiguration(classes = TestITConfiguration.class)
-public class GlobaTestIT {
+class FortuneTellerTestIT {
 
     private static final int LIMIT = 10;
 
     @Autowired
-    private Globa globa;
+    private FortuneTeller fortuneTeller;
 
     @ParameterizedTest
     @MethodSource("validRequestStream")
     void getValidResponse(final FortuneRequest request) {
-        val actual = globa.tell(request);
+        val actual = fortuneTeller.tell(request);
 
         assertThat(actual).isNotNull();
         assertThat(actual.getMessage()).isNotBlank()
@@ -42,13 +42,13 @@ public class GlobaTestIT {
     @ParameterizedTest
     @MethodSource("invalidRequestStream")
     void exceptionWhenRequestIsInvalid(final FortuneRequest request) {
-        assertThatThrownBy(() -> globa.tell(request))
+        assertThatThrownBy(() -> fortuneTeller.tell(request))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     void getNpeWhenEmailIsNull() {
-        assertThatThrownBy(() -> globa.tell(mock(FortuneRequest.class)))
+        assertThatThrownBy(() -> fortuneTeller.tell(mock(FortuneRequest.class)))
                 .isInstanceOf(NullPointerException.class);
     }
 
