@@ -4,7 +4,6 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
-import lombok.var;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 
@@ -16,8 +15,8 @@ final class OrderConfigProcessor implements Consumer<OrderConfig<?>> {
 
     @Override
     public void accept(final OrderConfig<?> orderConfig) {
-        var previousBeanName = "";
-        for (var i = 0; i < orderConfig.getClasses().size(); i++) {
+        String previousBeanName = "";
+        for (int i = 0; i < orderConfig.getClasses().size(); i++) {
             val currentBeanClass = orderConfig.getClasses().get(i);
             val currentBeanName = currentBeanClass.getTypeName();
 
