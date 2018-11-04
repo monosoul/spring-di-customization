@@ -6,6 +6,10 @@ import org.springframework.context.annotation.Profile;
 
 @Configuration
 @Profile("integration")
-@ComponentScan({"com.github.monosoul.fortuneteller.domain", "com.github.monosoul.fortuneteller.da"})
+@ComponentScan({
+        "com.github.monosoul.fortuneteller.domain",
+        "com.github.monosoul.fortuneteller.da",
+        "com.github.monosoul.fortuneteller.spring"
+})
 public class TestITConfiguration {
 }
