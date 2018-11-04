@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.test.aspect.automock;
+package com.github.monosoul.fortuneteller.test.aspect.javaconfig;
 
 import static org.mockito.Mockito.mock;
 import com.github.monosoul.fortuneteller.aspect.RestrictionAspect;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-@Profile({"unit", "automock"})
+@Profile({"unit", "javaconfig"})
 @EnableAspectJAutoProxy
 public class AspectConfiguration {
 

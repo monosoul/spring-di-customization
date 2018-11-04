@@ -1,6 +1,5 @@
 package com.github.monosoul.fortuneteller.test.functional.tellthetruth;
 
-import static com.github.monosoul.fortuneteller.aspect.TellTheTruthAspect.THE_TRUTH;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
 import static org.springframework.http.HttpStatus.OK;
@@ -18,7 +17,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @Slf4j
 @ExtendWith(SpringExtension.class)
-@ActiveProfiles("tellTheTruth")
+@ActiveProfiles("restrictAccess")
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class PersonalizedHoroscopeTellControllerTestFT {
 
@@ -31,13 +30,13 @@ public class PersonalizedHoroscopeTellControllerTestFT {
     @Test
     void test() {
         val actual = client.getForEntity(
-                "http://localhost:" + port + "/horoscope/tell/personal/Petrov/aquarius", PersonalizedHoroscope.class
+                "http://localhost:" + port + "/horoscope/tell/personal/pETROV/aquarius", PersonalizedHoroscope.class
         );
 
         assertThat(actual.getStatusCode()).isEqualByComparingTo(OK);
         assertThat(actual.getBody()).isNotNull();
-        assertThat(actual.getBody().getName()).isEqualTo("Anonymous");
-        assertThat(actual.getBody().getHoroscope().getMessage()).isEqualTo(THE_TRUTH);
+        assertThat(actual.getBody().getName()).isEqualTo("Petrov");
+        assertThat(actual.getBody().getHoroscope().getMessage()).isNotNull().isNotEmpty();
 
         log.info("Received response: {}", actual.getBody());
     }
