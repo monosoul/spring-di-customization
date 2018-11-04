@@ -7,9 +7,7 @@ import com.github.monosoul.fortuneteller.model.Horoscope;
 import lombok.NonNull;
 import lombok.val;
 import org.slf4j.Logger;
-import org.springframework.stereotype.Component;
 
-@Component
 public final class LoggingHoroscopeTeller implements HoroscopeTeller {
 
     private final HoroscopeTeller internal;

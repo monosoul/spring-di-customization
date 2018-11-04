@@ -5,9 +5,7 @@ import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
 import java.util.Map;
 import lombok.NonNull;
-import org.springframework.stereotype.Component;
 
-@Component
 public final class CachingFortuneTeller implements FortuneTeller {
 
     private final FortuneTeller internal;

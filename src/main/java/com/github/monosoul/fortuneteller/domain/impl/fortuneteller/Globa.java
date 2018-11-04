@@ -7,9 +7,7 @@ import com.github.monosoul.fortuneteller.model.FortuneRequest;
 import com.github.monosoul.fortuneteller.model.FortuneResponse;
 import com.github.monosoul.fortuneteller.model.PersonalData;
 import java.util.function.Function;
-import org.springframework.stereotype.Service;
 
-@Service
 public final class Globa implements FortuneTeller {
 
     private final FortuneResponseRepository responseRepository;

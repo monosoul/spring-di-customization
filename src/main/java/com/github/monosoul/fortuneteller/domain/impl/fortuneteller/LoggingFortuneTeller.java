@@ -7,9 +7,7 @@ import com.github.monosoul.fortuneteller.model.FortuneResponse;
 import lombok.NonNull;
 import lombok.val;
 import org.slf4j.Logger;
-import org.springframework.stereotype.Component;
 
-@Component
 public final class LoggingFortuneTeller implements FortuneTeller {
 
     private final FortuneTeller internal;

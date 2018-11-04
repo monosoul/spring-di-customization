@@ -5,9 +5,7 @@ import com.github.monosoul.fortuneteller.domain.HoroscopeTeller;
 import com.github.monosoul.fortuneteller.model.Horoscope;
 import java.util.Map;
 import lombok.NonNull;
-import org.springframework.stereotype.Component;
 
-@Component
 public final class CachingHoroscopeTeller implements HoroscopeTeller {
 
     private final HoroscopeTeller internal;
