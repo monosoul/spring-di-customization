@@ -1,4 +1,4 @@
-package com.github.monosoul.fortuneteller.automock.v2;
+package com.github.monosoul.fortuneteller.automock;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.withSettings;
@@ -7,17 +7,14 @@ import static org.springframework.core.ResolvableType.forConstructorParameter;
 import static org.springframework.core.annotation.AnnotationUtils.getAnnotation;
 import static org.springframework.util.ReflectionUtils.makeAccessible;
 import static org.springframework.util.ReflectionUtils.setField;
-import com.github.monosoul.fortuneteller.automock.Automocked;
 import java.lang.reflect.Constructor;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
-import lombok.var;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
 
-@SuppressWarnings("Duplicates")
 @Slf4j
 public class AutomockTestExecutionListener extends AbstractTestExecutionListener {
 
@@ -58,7 +55,7 @@ public class AutomockTestExecutionListener extends AbstractTestExecutionListener
     private Constructor<?> findConstructorToAutomock(final Class<?> clazz) {
         log.debug("Looking for suitable constructor of {}", clazz.getCanonicalName());
 
-        var fallBackConstructor = clazz.getDeclaredConstructors()[0];
+        Constructor<?> fallBackConstructor = clazz.getDeclaredConstructors()[0];
         for (val constructor : clazz.getDeclaredConstructors()) {
             if (constructor.getParameterTypes().length > fallBackConstructor.getParameterTypes().length) {
                 fallBackConstructor = constructor;
@@ -93,7 +90,7 @@ public class AutomockTestExecutionListener extends AbstractTestExecutionListener
 
         val constructorArgsAmount = constructor.getParameterTypes().length;
 
-        for (var i = 0; i < constructorArgsAmount; i++) {
+        for (int i = 0; i < constructorArgsAmount; i++) {
             val parameterType = forConstructorParameter(constructor, i);
             val beanName = parameterType.toString();
 

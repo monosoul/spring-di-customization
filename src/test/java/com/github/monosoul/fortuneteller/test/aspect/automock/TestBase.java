@@ -1,6 +1,6 @@
-package com.github.monosoul.fortuneteller.test.aspect.automock.v2;
+package com.github.monosoul.fortuneteller.test.aspect.automock;
 
-import com.github.monosoul.fortuneteller.automock.v2.AutomockTestExecutionListener;
+import com.github.monosoul.fortuneteller.automock.AutomockTestExecutionListener;
 import com.github.monosoul.fortuneteller.test.aspect.automock.AspectConfiguration;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
