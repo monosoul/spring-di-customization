@@ -12,11 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+import org.springframework.core.Ordered;
 import org.springframework.test.context.TestContext;
-import org.springframework.test.context.support.AbstractTestExecutionListener;
+import org.springframework.test.context.TestExecutionListener;
 
 @Slf4j
-public class AutomockTestExecutionListener extends AbstractTestExecutionListener {
+public class AutomockTestExecutionListener implements TestExecutionListener, Ordered {
 
     @Override
     public int getOrder() {
