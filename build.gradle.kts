@@ -32,9 +32,15 @@ java {
 }
 
 dependencies {
+    val lombokDependency = "org.projectlombok:lombok:1.18.4"
+
+    annotationProcessor(lombokDependency)
+
     compile("org.springframework.boot:spring-boot-starter-aop")
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.projectlombok:lombok:1.18.2")
+    compileOnly(lombokDependency)
+
+    testCompileOnly(lombokDependency)
     testCompile("org.apache.commons:commons-lang3:3.8")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testCompile("org.junit.jupiter:junit-jupiter-params:$junitVersion")
