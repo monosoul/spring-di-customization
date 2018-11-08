@@ -6,7 +6,7 @@ val byteBuddyVersion by extra { "1.9.2" }
 val junitVersion by extra { "5.3.1" }
 
 buildscript {
-    val springBootVersion by extra { "2.0.5.RELEASE" }
+    val springBootVersion by extra { "2.1.0.RELEASE" }
 
     repositories {
         mavenCentral()
@@ -32,15 +32,21 @@ java {
 }
 
 dependencies {
+    val lombokDependency = "org.projectlombok:lombok:1.18.4"
+
+    annotationProcessor(lombokDependency)
+
     compile("org.springframework.boot:spring-boot-starter-aop")
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.projectlombok:lombok:1.18.2")
-    testCompile("org.apache.commons:commons-lang3:3.8")
+    compileOnly(lombokDependency)
+
+    testCompileOnly(lombokDependency)
+    testCompile("org.apache.commons:commons-lang3:3.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
     testCompile("org.junit.jupiter:junit-jupiter-params:$junitVersion")
     testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
     testRuntime("org.junit.vintage:junit-vintage-engine:$junitVersion")
-    testCompile("org.assertj:assertj-core:3.9.1")
+    testCompile("org.assertj:assertj-core:3.11.1")
     testCompile("org.mockito:mockito-core:2.23.0") {
         exclude("net.bytebuddy")
     }
