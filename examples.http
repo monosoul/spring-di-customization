@@ -1,0 +1,22 @@
+POST http://localhost:8080/fortune/tell
+Accept: */*
+Content-Type: application/json;charset=UTF-8
+
+{
+  "name": "Someone",
+  "zodiacSign": "aquarius",
+  "age": 100500,
+  "email": "someone@some.where"
+}
+
+###
+
+GET http://localhost:8080/horoscope/tell/aquarius
+
+
+###
+
+GET http://localhost:8080/horoscope/tell/personal/pETROV/aries
+
+
+###
