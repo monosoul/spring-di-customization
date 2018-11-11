@@ -45,11 +45,11 @@ public class AutomockTestExecutionListener implements TestExecutionListener, Ord
     }
 
     private void setByNameCandidateResolver(final DefaultListableBeanFactory beanFactory) {
-        if ((beanFactory.getAutowireCandidateResolver() instanceof MockedBeanByNameAutowireCandidateResolver)) {
+        if ((beanFactory.getAutowireCandidateResolver() instanceof AutomockedBeanByNameAutowireCandidateResolver)) {
             return;
         }
         beanFactory.setAutowireCandidateResolver(
-                new MockedBeanByNameAutowireCandidateResolver(beanFactory.getAutowireCandidateResolver())
+                new AutomockedBeanByNameAutowireCandidateResolver(beanFactory.getAutowireCandidateResolver())
         );
     }
 

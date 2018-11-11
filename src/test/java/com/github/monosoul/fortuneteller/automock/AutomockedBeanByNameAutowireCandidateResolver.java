@@ -7,11 +7,11 @@ import org.springframework.beans.factory.config.DependencyDescriptor;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.AutowireCandidateResolver;
 
-public class MockedBeanByNameAutowireCandidateResolver implements AutowireCandidateResolver {
+public class AutomockedBeanByNameAutowireCandidateResolver implements AutowireCandidateResolver {
 
     private final AutowireCandidateResolver candidateResolver;
 
-    public MockedBeanByNameAutowireCandidateResolver(@NonNull final AutowireCandidateResolver candidateResolver) {
+    public AutomockedBeanByNameAutowireCandidateResolver(@NonNull final AutowireCandidateResolver candidateResolver) {
         this.candidateResolver = candidateResolver;
     }
 
