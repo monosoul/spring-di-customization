@@ -10,6 +10,7 @@ import com.github.monosoul.fortuneteller.domain.impl.horoscopeteller.LoggingHoro
 import com.github.monosoul.fortuneteller.spring.order.OrderConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 @Configuration
 public class DomainConfig {
@@ -24,6 +25,7 @@ public class DomainConfig {
     }
 
     @Bean
+    @Profile("!component")
     public OrderConfig<HoroscopeTeller> horoscopeTellerOrderConfig() {
         return () -> asList(
                 LoggingHoroscopeTeller.class,

@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run fortuneteller using component" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <module name="fortuneteller_main" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="com.github.monosoul.fortuneteller.FortuneTellerApplication" />
+    <option name="HIDE_BANNER" value="true" />
+    <option name="ENABLE_JMX_AGENT" value="false" />
+    <option name="ACTIVE_PROFILES" value="component" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
