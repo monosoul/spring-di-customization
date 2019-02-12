@@ -3,10 +3,10 @@ version = "1.0"
 
 val springBootVersion: String by extra
 val byteBuddyVersion by extra { "1.9.2" }
-val junitVersion by extra { "5.3.1" }
+val junitVersion by extra { "5.3.2" }
 
 buildscript {
-    val springBootVersion by extra { "2.1.0.RELEASE" }
+    val springBootVersion by extra { "2.1.2.RELEASE" }
 
     repositories {
         mavenCentral()
@@ -35,11 +35,11 @@ dependencies {
     val lombokDependency = "org.projectlombok:lombok:1.18.4"
 
     annotationProcessor(lombokDependency)
-
+    compileOnly(lombokDependency)
     compile("org.springframework.boot:spring-boot-starter-aop")
     compile("org.springframework.boot:spring-boot-starter-web")
-    compileOnly(lombokDependency)
 
+    testAnnotationProcessor(lombokDependency)
     testCompileOnly(lombokDependency)
     testCompile("org.apache.commons:commons-lang3:3.8.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
