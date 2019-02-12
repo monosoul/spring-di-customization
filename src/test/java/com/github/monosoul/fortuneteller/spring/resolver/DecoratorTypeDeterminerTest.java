@@ -4,6 +4,7 @@ import static com.github.monosoul.fortuneteller.util.Util.randomEnum;
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.of;
 import com.github.monosoul.fortuneteller.spring.DecoratorType;
 import java.util.stream.Stream;
 import lombok.val;
@@ -24,14 +25,8 @@ class DecoratorTypeDeterminerTest {
     }
 
     private static Stream<Arguments> decoratorTypeAndSimpleClassNameStream() {
-        return generate(() -> (Arguments) () -> {
-                    val decoratorType = randomEnum(DecoratorType.class);
-
-                    return new Object[]{
-                            decoratorType,
-                            decoratorType.getPrefix() + randomAlphabetic(LIMIT)
-                    };
-                }
+        return generate(() -> randomEnum(DecoratorType.class)).map(decoratorType ->
+                of(decoratorType, decoratorType.getPrefix() + randomAlphabetic(LIMIT))
         ).limit(LIMIT);
     }
 }

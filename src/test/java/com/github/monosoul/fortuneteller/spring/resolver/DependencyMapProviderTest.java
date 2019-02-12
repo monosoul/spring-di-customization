@@ -4,6 +4,7 @@ import static com.github.monosoul.fortuneteller.util.Util.randomEnum;
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.of;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -80,12 +81,10 @@ class DependencyMapProviderTest {
     }
 
     private static Stream<Arguments> decoratorTypeBeanNameAndClassNameStream() {
-        return generate(() -> (Arguments) () ->
-                new Object[]{
-                        randomEnum(DecoratorType.class),
-                        randomAlphabetic(LIMIT),
-                        randomAlphabetic(LIMIT)
-                }
-        ).limit(LIMIT);
+        return generate(() -> of(
+                randomEnum(DecoratorType.class),
+                randomAlphabetic(LIMIT),
+                randomAlphabetic(LIMIT)
+        )).limit(LIMIT);
     }
 }

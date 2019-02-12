@@ -6,6 +6,7 @@ import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.apache.commons.lang3.RandomUtils.nextInt;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.of;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -51,12 +52,9 @@ class CommonUtilsTest {
     }
 
     private static Stream<Arguments> classNameStream() {
-        return generate(() -> (Arguments) () -> {
-            val stringList = stringList();
-            val simpleName = lastElement(stringList);
-            val fqName = join(".", stringList);
-
-            return new Object[]{fqName, simpleName};
-        }).limit(LIMIT);
+        return generate(CommonUtilsTest::stringList).map(stringList -> of(
+                join(".", stringList),
+                lastElement(stringList)
+        )).limit(LIMIT);
     }
 }
