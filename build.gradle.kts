@@ -6,7 +6,7 @@ val byteBuddyVersion by extra { "1.9.2" }
 val junitVersion by extra { "5.3.1" }
 
 buildscript {
-    val springBootVersion by extra { "2.1.0.RELEASE" }
+    val springBootVersion by extra { "2.1.2.RELEASE" }
 
     repositories {
         mavenCentral()
