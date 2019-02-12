@@ -3,7 +3,7 @@ version = "1.0"
 
 val springBootVersion: String by extra
 val byteBuddyVersion by extra { "1.9.2" }
-val junitVersion by extra { "5.3.1" }
+val junitVersion by extra { "5.3.2" }
 
 buildscript {
     val springBootVersion by extra { "2.1.2.RELEASE" }
