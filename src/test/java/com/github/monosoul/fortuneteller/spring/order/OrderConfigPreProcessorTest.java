@@ -98,7 +98,7 @@ class OrderConfigPreProcessorTest {
     }
 
     private static Stream<Arguments> stringArrayAsArgumentsStream() {
-        return stringArrayStream().map(sa -> (Arguments) () -> new Object[]{sa}).limit(LIMIT);
+        return stringArrayStream().map(sa -> (Object) sa).map(Arguments::of).limit(LIMIT);
     }
 
     private static Stream<String[]> stringArrayStream() {
