@@ -3,6 +3,7 @@ package com.github.monosoul.fortuneteller.web;
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.of;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
@@ -66,6 +67,8 @@ class PersonalizedHoroscopeTellControllerTest {
     }
 
     private static Stream<Arguments> nameAndSignStream() {
-        return generate(() -> (Arguments) () -> new Object[]{randomAlphabetic(LIMIT), randomAlphabetic(LIMIT)}).limit(LIMIT);
+        return generate(() ->
+                of(randomAlphabetic(LIMIT), randomAlphabetic(LIMIT))
+        ).limit(LIMIT);
     }
 }

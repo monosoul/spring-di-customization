@@ -5,6 +5,7 @@ import static com.github.monosoul.fortuneteller.util.Util.randomEnum;
 import static java.util.stream.Stream.generate;
 import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.params.provider.Arguments.of;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
@@ -54,8 +55,8 @@ class HoroscopeRepositoryImplTest {
     }
 
     private static Stream<Arguments> horoscopeAndSignStream() {
-        return generate(() -> (Arguments) () ->
-                new Object[]{randomAlphabetic(LIMIT), randomEnum(ZodiacSign.class)}
+        return generate(() ->
+                of(randomAlphabetic(LIMIT), randomEnum(ZodiacSign.class))
         ).limit(LIMIT);
     }
 }
