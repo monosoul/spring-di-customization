@@ -38,6 +38,7 @@ dependencies {
     compileOnly(lombokDependency)
     compile("org.springframework.boot:spring-boot-starter-aop")
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("com.github.monosoul:spring-orderconfig:0.0.2")
 
     testAnnotationProcessor(lombokDependency)
     testCompileOnly(lombokDependency)

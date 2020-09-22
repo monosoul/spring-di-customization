@@ -1,52 +1,40 @@
 package com.github.monosoul.fortuneteller.domain;
 
-import com.github.monosoul.fortuneteller.common.ZodiacSign;
-import com.github.monosoul.fortuneteller.da.FortuneResponseRepository;
-import com.github.monosoul.fortuneteller.da.HoroscopeRepository;
-import com.github.monosoul.fortuneteller.da.PersonalDataRepository;
 import com.github.monosoul.fortuneteller.domain.impl.fortuneteller.CachingFortuneTeller;
 import com.github.monosoul.fortuneteller.domain.impl.fortuneteller.Globa;
 import com.github.monosoul.fortuneteller.domain.impl.fortuneteller.LoggingFortuneTeller;
 import com.github.monosoul.fortuneteller.domain.impl.horoscopeteller.CachingHoroscopeTeller;
 import com.github.monosoul.fortuneteller.domain.impl.horoscopeteller.Gypsy;
 import com.github.monosoul.fortuneteller.domain.impl.horoscopeteller.LoggingHoroscopeTeller;
-import com.github.monosoul.fortuneteller.model.FortuneRequest;
-import com.github.monosoul.fortuneteller.model.FortuneResponse;
-import com.github.monosoul.fortuneteller.model.Horoscope;
-import com.github.monosoul.fortuneteller.model.PersonalData;
-import java.util.Map;
-import java.util.function.Function;
+import com.github.monosoul.spring.order.OrderConfig;
+import com.github.monosoul.spring.order.support.OrderConfigConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+
+
+import static com.github.monosoul.spring.order.OrderConfigItemImpl.of;
+import static java.util.Arrays.asList;
 
 @Configuration
+@Import(OrderConfigConfiguration.class)
 public class DomainConfig {
 
     @Bean
-    public FortuneTeller fortuneTeller(
-            final Map<FortuneRequest, FortuneResponse> cache,
-            final FortuneResponseRepository fortuneResponseRepository,
-            final Function<FortuneRequest, PersonalData> personalDataExtractor,
-            final PersonalDataRepository personalDataRepository
-    ) {
-        return new LoggingFortuneTeller(
-                new CachingFortuneTeller(
-                        new Globa(fortuneResponseRepository, personalDataExtractor, personalDataRepository),
-                        cache
-                )
+    public OrderConfig<FortuneTeller> fortuneTellerOrderConfig() {
+        return () -> asList(
+                of(LoggingFortuneTeller.class),
+                of(CachingFortuneTeller.class),
+                of(Globa.class)
         );
     }
 
     @Bean
-    public HoroscopeTeller horoscopeTeller(
-            final Map<ZodiacSign, Horoscope> cache,
-            final HoroscopeRepository horoscopeRepository
-    ) {
-        return new LoggingHoroscopeTeller(
-                new CachingHoroscopeTeller(
-                        new Gypsy(horoscopeRepository),
-                        cache
-                )
+    public OrderConfig<HoroscopeTeller> horoscopeTellerOrderConfig() {
+        return () -> asList(
+                of(LoggingHoroscopeTeller.class),
+                of(CachingHoroscopeTeller.class),
+                of(Gypsy.class)
         );
     }
 }
